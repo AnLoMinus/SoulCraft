@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulCraft | מערכת ספרים חיה</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-active {
+            background-color: #fff7ed;
+            color: #c2410c;
+            border-bottom: 2px solid #f59e0b;
+        }
+
+        .hidden-tab {
+            display: none;
+        }
+
+        .book-card:hover {
+            transform: scale(1.02);
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('overview')">
+                    <i data-lucide="flame" class="text-amber-500 w-8 h-8"></i>
+                    <span class="font-bold text-2xl text-slate-800 tracking-tight">Soul<span class="text-amber-500">Craft</span></span>
+                </div>
+                <div class="hidden md:flex space-x-reverse space-x-2" id="nav-tabs">
+                    <button onclick="switchTab('overview')" data-tab="overview" class="tab-btn px-4 py-2 rounded-lg font-bold transition-all text-slate-600 hover:bg-slate-50 tab-active">מבט על</button>
+                    <button onclick="switchTab('worlds')" data-tab="worlds" class="tab-btn px-4 py-2 rounded-lg font-bold transition-all text-slate-600 hover:bg-slate-50">4 העולמות</button>
+                    <button onclick="switchTab('algorithm')" data-tab="algorithm" class="tab-btn px-4 py-2 rounded-lg font-bold transition-all text-slate-600 hover:bg-slate-50">אלגוריתם יומי</button>
+                    <button onclick="switchTab('needs')" data-tab="needs" class="tab-btn px-4 py-2 rounded-lg font-bold transition-all text-slate-600 hover:bg-slate-50">צרכים מיוחדים</button>
+                    <button onclick="switchTab('library')" data-tab="library" class="tab-btn px-4 py-2 rounded-lg font-bold transition-all text-slate-600 hover:bg-slate-50">ספריית הנחל</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-slate-900 text-white py-20 px-4 relative overflow-hidden text-center">
+        <div class="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-600 via-slate-900 to-slate-900"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-block bg-amber-500/20 text-amber-400 px-4 py-1 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
+                מהדורה מורחבת v0.0.2
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                📚🔥 מַעֲרֶכֶת סְפָרִים חַיָּה <br/> לְפִתּוּחַ הַנֶּפֶשׁ
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                ארכיטקטורת ידע תורנית המנגישה את אורו של רבנו נחמן מברסלב ככלים מעשיים לדור האחרון.
+            </p>
+            <div class="mt-8 rounded-3xl overflow-hidden shadow-2xl border-8 border-slate-800 transform hover:scale-[1.01] transition-transform">
+                <img src="https://github.com/user-attachments/assets/bb9e96bd-ae9e-46d0-a0ba-1f57136921d4" alt="Wisdom Light" class="w-full object-cover h-[400px]">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-16">
+        
+        <!-- Overview Tab -->
+        <section id="tab-overview" class="tab-content animate-fade-in bg-white rounded-3xl p-10 shadow-xl border border-slate-100 mb-16">
+            <div class="mb-10 border-b-2 border-amber-100 pb-6">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="p-3 bg-amber-100 text-amber-600 rounded-2xl shadow-inner"><i data-lucide="compass" class="w-8 h-8"></i></div>
+                    <h2 class="text-4xl font-black text-slate-800">מבט על המערכת</h2>
+                </div>
+                <p class="text-slate-600 text-xl leading-relaxed max-w-3xl">
+                    מפעל "ספריית הנחל" אינו רק פרויקט של ליקוט, אלא בניין כביר של ארכיטקטורת ידע תורנית-נפשית. המערכת הופכת רשימת קריאה למסלול התפתחות אקטיבי.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="activity" class="text-amber-500 mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3">צמיחה מדורגת</h3>
+                    <p class="text-slate-600">בניית נדבך על גבי נדבך, מהיסודות האמוניים ועד לעשייה המעשית בשטח.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="zap" class="text-amber-500 mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3">התמרה אנרגטית</h3>
+                    <p class="text-slate-600">הפיכת טקסט תיאורטי לכוח חיים שמשנה את תפיסת המציאות של הלומד.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i data-lucide="heart" class="text-amber-500 mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-3">חיבור לשורש</h3>
+                    <p class="text-slate-600">התקשרות ישירה לעצות של הצדיק כדי למצוא נחמה ומרפא בתוך ההסתרה.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Worlds Tab -->
+        <section id="tab-worlds" class="tab-content hidden-tab animate-fade-in mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-slate-800 mb-4">מודל אבי״ע – ארבעת העולמות</h2>
+                <p class="text-xl text-slate-600">סיווג הספרים לפי רמות ההשפעה על הנפש</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Atzilut -->
+                <div class="bg-white rounded-3xl shadow-lg border-t-8 border-amber-500 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="shield" class="text-amber-500 w-8 h-8"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">✨ עולם האצילות (אמונה)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-medium">השורש המחשבתי. בניית ודאות פנימית מול הספק.</p>
+                    <div class="space-y-3">
+                        <span class="inline-block bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-bold">מגן האמונה</span>
+                        <span class="inline-block bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-bold">אמונה פשוטה בדור האחרון</span>
+                        <span class="inline-block bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-bold">מדריך ההתקשרות</span>
+                    </div>
+                </div>
+                <!-- Briah -->
+                <div class="bg-white rounded-3xl shadow-lg border-t-8 border-blue-500 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="brain" class="text-blue-500 w-8 h-8"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">🌱 עולם הבריאה (תודעה)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-medium">ארגון המחשבה. יצירת סדר פנימי וזיכרון התכלית.</p>
+                    <div class="space-y-3">
+                        <span class="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">נקודות טובות בנפש</span>
+                        <span class="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">אמת ושלום</span>
+                        <span class="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">זיכרון והתחדשות</span>
+                    </div>
+                </div>
+                <!-- Yetzirah -->
+                <div class="bg-white rounded-3xl shadow-lg border-t-8 border-rose-500 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="heart" class="text-rose-500 w-8 h-8"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">🔥 עולם היצירה (רגש)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-medium">עבודת המידות. התמודדות עם פחדים וחיזוק השמחה.</p>
+                    <div class="space-y-3">
+                        <span class="inline-block bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-bold">מפתח השמחה</span>
+                        <span class="inline-block bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-bold">אין ייאוש כלל</span>
+                        <span class="inline-block bg-rose-50 text-rose-700 px-3 py-1 rounded-full text-sm font-bold">שערי התבודדות</span>
+                    </div>
+                </div>
+                <!-- Assiyah -->
+                <div class="bg-white rounded-3xl shadow-lg border-t-8 border-emerald-500 p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="hammer" class="text-emerald-500 w-8 h-8"></i>
+                        <h3 class="text-2xl font-bold text-slate-800">🛠️ עולם העשייה (מעשה)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6 font-medium">הנהגות פרקטיות. הליכה בדרך התורה בחיי היום-יום.</p>
+                    <div class="space-y-3">
+                        <span class="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm font-bold">שולחן ערוך למעשה</span>
+                        <span class="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm font-bold">פרנסה בנועם</span>
+                        <span class="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm font-bold">רפואת הצדיק</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Algorithm Tab -->
+        <section id="tab-algorithm" class="tab-content hidden-tab animate-fade-in bg-slate-900 text-white rounded-3xl p-12 shadow-2xl mb-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10"><i data-lucide="activity" class="w-48 h-48"></i></div>
+            <div class="mb-12 border-b border-slate-700 pb-6 relative z-10">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="p-3 bg-slate-800 text-amber-400 rounded-xl"><i data-lucide="clock" class="w-8 h-8"></i></div>
+                    <h2 class="text-4xl font-black">אלגוריתם יומי 🔄</h2>
+                </div>
+                <p class="text-slate-400 text-xl">כך הופכים את הידע לכוח משנה מציאות ב-4 שלבים</p>
+            </div>
+            <div class="space-y-12 relative z-10">
+                <div class="flex gap-6 items-start">
+                    <div class="bg-amber-500 text-slate-900 w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shrink-0">1</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-amber-400 mb-2">קלט (Input) – 15 דקות</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed">קריאה ממוקדת בספרי "אצילות". המטרה: כיול התדר הרוחני לתחילת היום.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shrink-0">2</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-400 mb-2">עיבוד (Processing) – 20 דקות</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed">לימוד עמוק בספרי "בריאה". כתיבת 3 נקודות טובות שמצאת בעצמך היום.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="bg-rose-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shrink-0">3</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-rose-400 mb-2">חיבור (Connection) – 10 דקות</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed">שימוש בספרי "יצירה" לעבודה רגשית. רגעי התבודדות על מה שלמדת.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="bg-emerald-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-black text-xl shrink-0">4</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-emerald-400 mb-2">פלט (Output) – יישום</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed">החלטה מעשית אחת מתוך "שולחן ערוך למעשה" שמיושמת כאן ועכשיו.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Needs Tab -->
+        <section id="tab-needs" class="tab-content hidden-tab animate-fade-in mb-16">
+            <div class="mb-10 text-center">
+                <h2 class="text-4xl font-black text-slate-800 mb-4">מענה לצרכים מיוחדים</h2>
+                <p class="text-xl text-slate-600">עצות ספציפיות למצבים רגשיים מורכבים</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-black text-2xl text-slate-800 mb-4 flex items-center gap-3">😔 ייאוש ונפילה</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">התרופה: לימוד אינטנסיבי ב"אין ייאוש כלל" בשילוב "סודות התיקון הכללי".</p>
+                    <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full uppercase tracking-wider">עדיפות עליונה</span>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-black text-2xl text-slate-800 mb-4 flex items-center gap-3">😨 פחדים וחרדות</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">התרופה: לימוד ב"מגן האמונה" והתמקדות ב"המתקת הדין בשורש".</p>
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">חיזוק פנימי</span>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-black text-2xl text-slate-800 mb-4 flex items-center gap-3">💼 קשיי פרנסה</h4>
+                    <p class="text-slate-600 leading-relaxed mb-4">התרופה: עיון מעמיק ב"פרנסה בנועם" וביטחון בהשגחה.</p>
+                    <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">עצה מעשית</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Tab -->
+        <section id="tab-library" class="tab-content hidden-tab animate-fade-in bg-white rounded-3xl p-10 shadow-xl border border-slate-100 mb-16">
+            <div class="mb-10 border-b-2 border-amber-100 pb-6">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="p-3 bg-amber-100 text-amber-600 rounded-xl"><i data-lucide="book-open" class="w-8 h-8"></i></div>
+                    <h2 class="text-4xl font-black text-slate-800">ספריית הנחל המלאה</h2>
+                </div>
+                <p class="text-slate-600 text-xl">24 כלי עבודה רוחניים לשדרוג הנפש</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 bg-slate-50 p-6 rounded-2xl">
+                <h3 class="text-2xl font-bold text-slate-800 m-0">חיפוש מהיר בספרייה:</h3>
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="library-search" oninput="filterBooks()" placeholder="חפש לפי שם ספר או מילת מפתח..." class="w-full pl-4 pr-12 py-3 border-2 border-slate-200 rounded-xl focus:ring-4 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all text-lg font-medium">
+                    <i data-lucide="search" class="absolute right-4 top-3.5 text-slate-400 w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div id="books-container" class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+                <!-- Books will be injected here via JS -->
+            </div>
+            
+            <div class="bg-gradient-to-br from-slate-800 via-slate-900 to-black text-white p-12 rounded-3xl text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black mb-6 text-amber-400">TorahFlow (TF) – תורה זורמת לחיים 🚀</h2>
+                    <p class="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+                        הממשק העתידי שישלב בינה מלאכותית (LLM) מבוססת מקורות ברסלב כדי לספק ליווי אישי בזמן אמת, זיהוי מצבים רגשיים והתאמת העצה הנכונה לכל רגע.
+                    </p>
+                    <button class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-black px-8 py-4 rounded-xl shadow-lg transition-all transform hover:translate-y-[-2px]">היה הראשון לדעת</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-16 text-center text-slate-500">
+        <div class="flex flex-wrap justify-center gap-3 mb-8 px-4">
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">חכמה</span>
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">בינה</span>
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">דעת</span>
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">חסד</span>
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">גבורה</span>
+            <span class="text-sm bg-slate-100 text-slate-700 px-4 py-2 rounded-full border border-slate-200 font-bold">תפארת</span>
+        </div>
+        <p class="text-2xl font-black text-amber-600 mb-2 tracking-widest">״שִׁוִּיתִי ה' לְנֶגְדִּי תָמִיד״</p>
+        <p class="text-lg">SoulCraft / TorahFlow v0.0.2 • בניין כביר לדור האחרון</p>
+        <p class="mt-4 opacity-60 text-sm italic">פותח במיוחד עבור ליאון (Anlominus) • מאי 2026</p>
+    </footer>
+
+    <script>
+        // Full Dataset of 24 Books
+        const libraryBooks = [
+            { number: 1, title: "שֻׁלְחָן עָרוּךְ לְמַעֲשֶׂה", description: "קִיצּוּר הַהֲלָכוֹת הַנְּחוּצוֹת בְּיוֹתֵר לְכָל אָדָם בְּכָל עֵת, כְּדֵי לְהַכְנִיעַ אֶת הָרַע וּלְזַכֵּךְ אֶת הַמַּחְשָׁבָה." },
+            { number: 2, title: "אֵין יֵאוּשׁ כְּלָל", description: "מַדְרִיךְ הַתְחַזְּקוּת לְמִי שֶׁנָּפַל לִמְקוֹמוֹת רְחוֹקִים, הַמְלַמֵּד אֶת אָמָּנוּת הַהַתְחָלָה מֵחָדָשׁ בְּכָל רֶגַע." },
+            { number: 3, title: "נְקֻדּוֹת טוֹבוֹת בַּנֶּפֶשׁ", description: "סֵפֶר תַּרְגִּילִים לִמְצִיאַת הַטּוֹב הַגָּנוּז בָּאָדָם וּבַזּוּלָת, כְּדֵי לַהֲפֹךְ כַּף חוֹבָה לִזְכוּת." },
+            { number: 4, title: "סוֹדוֹת הַתִּקּוּן הַכְּלָלִי", description: "בֵּאוּר עָמֹק וּמַעֲשִׂי לְעֶשֶׂרֶת הַמִּזְמוֹרִים כִּרְפוּאָה לְכָל הַחֳלָאִים וּפְגַם הַבְּרִית." },
+            { number: 5, title: "שַׁעֲרֵי הִתְבּוֹדְדּוּת", description: "מַדְרִיךְ לְשִׂיחָה אִישִׁית בְּלָשׁוֹן פְּשׁוּטָה בֵּין הָאָדָם לְקוֹנוֹ בִּמְסִירּוּת נֶפֶשׁ." },
+            { number: 6, title: "מָגֵן הָאֱמוּנָה", description: "בֵּאוּר הַהַנְהָגָה שֶׁל הִתְרַחֲקוּת מֵחֲקִירוֹת וְחוֹכְמוֹת חִיצוֹנִיּוֹת לְטוֹבַת תְּמִימוּת וּפְשִׁיטוּת." },
+            { number: 7, title: "מַפְתֵּחַ הַשִּׂמְחָה", description: "אֶמְצָעִים וְעֵצוֹת לִהְיוֹת בְּשִׂמְחָה תָּמִיד, גַּם בְּאֶמְצָעוּת מִילֵי דִּבְדִיחוּתָא." },
+            { number: 8, title: "הַמְתָּקַת הַדִּין בַּשֹּׁרֶשׁ", description: "רִכּוּז סְגֻלּוֹת וּתְפִלּוֹת לְהַמְתָּקַת דִּינִים וְיִסּוּרִים עַל יְדי הִתְקָרְבוּת לַצַּדִּיק." },
+            { number: 9, title: "כֹּחַ הַשֵּׁמוֹת", description: "עִיּוּן בְּמַעֲלַת הַזְכָּרַת שְׁמוֹת הַצַּדִּיקִים כִּסְגֻלָּה לְשִׁנּוּי הַטֶּבַע." },
+            { number: 10, title: "אֱמֶת וְשָׁלוֹם", description: "דְּרָכִים לִבְנִיַּת שָׁלוֹם בֵּין חֶלְקֵי הַנֶּפֶשׁ וּבֵין אָדָם לַחֲבֵרוֹ עַל בְּסִיס נְקֻדַּת הָאֱמֶת." },
+            { number: 11, title: "רְפוּאַת הַצַּדִּיק", description: "רִכּוּז עֵצוֹת לִבְרִיאוּת הַגּוּף וְהַנֶּפֶשׁ הַמִּתְבַּסְּסוֹת עַל אֱמוּנָה וְלֹא עַל דּוֹקְטוֹרִים טוֹעִים." },
+            { number: 12, title: "פִּדְיוֹן נֶפֶשׁ מַעֲשִׂי", description: "סֵדֶר פִּדְיוֹן הַנֶּפֶשׁ לְבִטּוּל גְּזֵרוֹת קָשׁוֹת כְּפִי שֶׁמָּסַר רַבֵּנוּ." },
+            { number: 13, title: "וִדּוּי דְּבָרִים", description: "חֲשִׁיבוּת הוֹצָאַת הַדְּבָרִים מֵהַכֹּחַ אֶל הַפֹּעַל לְזִכּוּךְ הַמַּחְשָׁבָה." },
+            { number: 14, title: "פַּרְנָסָה בְּנֹעַם", description: "כֵּיצַד לַעֲסֹק בְּמַשָּׂא וּמַתָּן בֶּאֱמוּנָה וּבְבִטָּחוֹן בַּהַשְׁגָּחָה הָאֱלֹקִית." },
+            { number: 15, title: "חִיּוּת הַתּוֹרָה", description: "עֵצוֹת לִטְעֹם אֶת הַנְּעִימוּת וְהַחִיּוּת בְּלִמּוּד הַתּוֹרָה וּבִמְצִיאַת חִדּוּשִׁים." },
+            { number: 16, title: "מַדְרִיךְ הַהִתְקָשְּׁרוּת", description: "כֵּיצַד לְהִתְקָרֵב בֶּאֱמֶת לַצַּדִּיק יְסוֹד עוֹלָם וּלְקַבֵּל מִמֶּנּוּ עֵצוֹת יְשָׁרוֹת." },
+            { number: 17, title: "עַקְשָׁנוּת בַּקְּדֻשָּׁה", description: "כֹּחַ הָרָצֹון וְהָעַקְשָׁנוּת בַּעֲבוֹדַת הַשֵּׁם מוּל כָּל הַמְּנִיעוֹת." },
+            { number: 18, title: "תְּפִלָּה מִכָּל הַתּוֹרָה", description: "כֵּיצַד לַהֲפֹךְ כָּל לִמּוּד וְכָל הֲלָכָה לִתְפִלָּה וְתַחֲנוּנִים." },
+            { number: 19, title: "זִכָּרוֹן וְהִתְחַדְּשׁוּת", description: "אָמָּנוּת הַזִּכָּרוֹן שֶׁל הַתַּכְלִית מִמּוּל הַשִּׁכְחָה שֶׁל הַבְלֵי הָעוֹלָם." },
+            { number: 20, title: "אֱמוּנָה פְּשׁוּטָה בַּדּוֹר הָאַחֲרוֹן", description: "עֵצוֹת לַעֲמִידָה אֵיתָנָה מוּל הַסְתָּרוֹת אָרוֹת וְהַסְתָּרָה שֶׁבְּתוֹךְ הַסְתָּרָה." },
+            { number: 21, title: "טָהֳרַת הַמַּחְשָׁבָה", description: "מַדְרִיךְ לְנִצָּחוֹן בַּמִּלְחָמָה עַל הַהִרְהוּרִים וְהַמַּחְשָׁבוֹת הַזָּרוֹת." },
+            { number: 22, title: "סֵדֶר הַדּוֹרֹות הָאֲמִתִּי", description: "הֲבָנַת הַקֶּשֶׁר הַנִּצְחִי שֶׁל מְסִירַת הַתּוֹרָה מִמֹּשֶׁה רַבֵּנוּ וְעַד הַצַּדִּיקִים שֶׁבְּכָל דּוֹר." },
+            { number: 23, title: "סוֹד הַמֵּלִיצָה", description: "שִׁמּוּשׁ בְּשִׁירָה וּבִתְפִלָּה כִּכְלִי לְזִכּוּךְ הַלֵּב וְהַתּוֹרָה." },
+            { number: 24, title: "אַבִּ״י הַנַּחַל הַשָּׁלֵם", description: "רִכּוּז מִכְתְּבֵי הַהִתְחַזְּקוּת בְּרוּחַ סַבָּא יִשְׂרָאֵל לְהָפִיץ אֶת הָאוֹר בְּכָל הָעוֹלָם." }
+        ];
+
+        // Tab Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                if(btn.getAttribute('data-tab') === tabId) btn.classList.add('tab-active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden-tab');
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden-tab');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Search & Library Logic
+        function renderBooks(books) {
+            const container = document.getElementById('books-container');
+            container.innerHTML = books.length > 0 ? books.map(book => `
+                <div class="book-card flex gap-6 items-start p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all group">
+                    <div class="flex-shrink-0 w-12 h-12 bg-amber-500 text-slate-900 rounded-xl flex items-center justify-center font-black shadow-md group-hover:bg-amber-400 transition-colors">
+                        ${book.number}
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-black text-slate-800 mb-2">${book.title}</h4>
+                        <p class="text-slate-600 leading-relaxed text-lg">${book.description}</p>
+                    </div>
+                </div>
+            `).join('') : `
+                <div class="col-span-2 text-center py-16 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+                    <i data-lucide="info" class="mx-auto text-slate-400 w-16 h-16 mb-4"></i>
+                    <p class="text-2xl text-slate-500 font-bold">לא נמצאו ספרים התואמים את החיפוש שלך.</p>
+                </div>
+            `;
+            // Re-run lucide icons for dynamic content
+            lucide.createIcons();
+        }
+
+        function filterBooks() {
+            const term = document.getElementById('library-search').value.toLowerCase();
+            const filtered = libraryBooks.filter(b => 
+                b.title.toLowerCase().includes(term) || 
+                b.description.toLowerCase().includes(term)
+            );
+            renderBooks(filtered);
+        }
+
+        // Initialize
+        window.onload = () => {
+            lucide.createIcons();
+            renderBooks(libraryBooks);
+        };
+    </script>
+</body>
+</html>
